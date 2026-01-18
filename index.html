@@ -1,1 +1,141 @@
-hello itcast.
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kyandi的个人博客</title>
+    <link rel="stylesheet" href="01.css">
+</head>
+<body>
+    <!-- 左侧导航栏 -->
+    <nav class="sidebar">
+        <a href="#" class="nav-item active" data-page="home">
+            <span>主页</span>
+        </a>
+        <a href="#" class="nav-item" data-page="blog">
+            <span>博客</span>
+        </a>
+        <a href="#" class="nav-item" data-page="notes">
+            <span>笔记</span>
+        </a>
+        <a href="#" class="nav-item" data-page="agents">
+            <span>智能体</span>
+        </a>
+    </nav>
+
+    <!-- 顶部透明栏 -->
+    <div class="top-bar">
+        <div class="logo">kyandi</div>
+        <div class="current-page" id="currentPage">主页</div>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <div class="main-content">
+        <!-- 主页 -->
+        <section id="home" class="page active">
+            <h1>欢迎来到我的个人博客</h1>
+            <p>你好！我是kyandi！</p>
+            <p>希望通过这个平台，能够与更多志同道合的朋友交流，共同进步！</p>
+        </section>
+
+        <!-- 博客页面 -->
+        <section id="blog" class="page">
+            <h1>我的博客</h1>
+            <ul class="blog-list" id="blogList">
+                <a href="#" class="blog-link" data-url="">
+                    <li class="blog-item" data-article="article1">
+                        <div class="blog-title">探索人工智能的未来发展趋势</div>
+                        <div class="blog-excerpt">本文探讨了当前AI技术的发展现状以及未来可能的发展方向...</div>
+                    </li>
+                </a>
+                <a href="#" class="blog-link" data-url="">
+                    <li class="blog-item" data-article="article2">
+                        <div class="blog-title">Web开发中的最佳实践总结</div>
+                        <div class="blog-excerpt">分享我在Web开发过程中积累的一些实用技巧和最佳实践...</div>
+                    </li>
+                </a>
+                <a href="#" class="blog-link" data-url="">
+                    <li class="blog-item" data-article="article3">
+                        <div class="blog-title">Python数据分析入门指南</div>
+                        <div class="blog-excerpt">为初学者准备的Python数据分析入门教程，涵盖基础概念和实际应用...</div>
+                    </li>
+                </a>
+            </ul>
+        </section>
+
+        <!-- 笔记页面 -->
+        <section id="notes" class="page">
+            <h1>我的笔记</h1>
+            <ul class="notes-list" id="notesList">
+                <a href="#" class="note-link" data-url="">
+                    <li class="note-item" data-note="note1">
+                        <div class="note-title">JavaScript高级特性学习笔记</div>
+                        <div class="note-excerpt">记录了ES6+新特性的学习过程和实际应用场景...</div>
+                    </li>
+                </a>
+                <a href="#" class="note-link" data-url="">
+                    <li class="note-item" data-note="note2">
+                        <div class="note-title">机器学习算法原理总结</div>
+                        <div class="note-excerpt">对常用机器学习算法的原理和数学推导进行了梳理...</div>
+                    </li>
+                </a>
+                <a href="#" class="note-link" data-url="">
+                    <li class="note-item" data-note="note3">
+                        <div class="note-title">数据库优化策略整理</div>
+                        <div class="note-excerpt">收集了数据库性能优化的各种技巧和经验...</div>
+                    </li>
+                </a>
+            </ul>
+        </section>
+
+        <!-- 智能体页面 -->
+        <section id="agents" class="page">
+            <h1>我的智能体项目</h1>
+            <div class="agent-card">
+                <h2>Qwen智能助手</h2>
+                <p><strong>项目简介：</strong>一个先进的多模态人工智能助手，能够理解和生成自然语言，协助用户完成各种任务。</p>
+                <p><strong>核心功能：</strong></p>
+                <ul>
+                    <li>自然语言理解和生成</li>
+                    <li>代码编写和调试辅助</li>
+                    <li>文档阅读和摘要生成</li>
+                    <li>多轮对话管理</li>
+                    <li>知识问答</li>
+                </ul>
+            </div>
+            <div class="agent-card">
+                <h2>代码审查助手</h2>
+                <p><strong>项目简介：</strong>专注于代码质量检查和安全漏洞识别的智能工具。</p>
+                <p><strong>核心功能：</strong></p>
+                <ul>
+                    <li>代码规范性检查</li>
+                    <li>潜在bug检测</li>
+                    <li>性能优化建议</li>
+                    <li>安全漏洞扫描</li>
+                </ul>
+            </div>
+            <div class="agent-card">
+                <h2>学习规划师</h2>
+                <p><strong>项目简介：</strong>个性化学习路径推荐系统，帮助用户制定高效的学习计划。</p>
+                <p><strong>核心功能：</strong></p>
+                <ul>
+                    <li>学习目标设定</li>
+                    <li>个性化课程推荐</li>
+                    <li>进度跟踪和评估</li>
+                    <li>知识点关联分析</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>&copy; 2026 kyandi的个人博客. 版权所有.</p>
+            <div class="contact-info">
+                联系方式: example@email.com | GitHub: github.com/kyandi
+            </div>
+        </footer>
+    </div>
+
+    <script src="01.js"></script>
+</body>
+</html>
