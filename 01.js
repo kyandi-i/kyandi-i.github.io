@@ -40,7 +40,7 @@ document.querySelectorAll('.note-link').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
         const url = this.getAttribute('data-url');
-        if(url && url !== 'https://github.com/kyandi-i/improvement') {
+        if(url && url !== '') {
             window.open(url, '_blank');
         } else {
             alert('此链接尚未配置，请联系管理员添加跳转地址');
