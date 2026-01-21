@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="kyandi的个人博客，分享技术心得与学习笔记">
     <title>kyandi的个人博客</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
     <link rel="stylesheet" href="01.css">
 </head>
 <body>
     <nav class="sidebar">
+        <!-- logo移到侧边栏顶部 -->
+        <div class="logo">kyandi</div>
         <a href="#" class="nav-item active" data-page="home">
             <span>主页</span>
         </a>
@@ -18,17 +22,15 @@
         <a href="#" class="nav-item" data-page="notes">
             <span>笔记</span>
         </a>
-        <a href="#" class="nav-item" data-page="agents">
-            <span>智能体</span>
-        </a>
     </nav>
 
     <div class="top-bar">
-        <div class="logo">kyandi</div>
+        <!-- current-page移到右侧 -->
         <div class="current-page" id="currentPage">主页</div>
     </div>
 
     <div class="main-content">
+        <!-- 内容保持不变 -->
         <section id="home" class="page active">
             <h1>欢迎来到我的个人博客</h1>
             <div class="intro-card">
@@ -40,30 +42,30 @@
         <section id="blog" class="page">
             <h1>我的博客</h1>
             <ul class="blog-list" id="blogList">
-                <a href="#" class="blog-link" data-url="">
-                    <li class="blog-item">
+                <li class="blog-item">
+                    <a href="#" class="blog-link" data-url="">
                         <div class="blog-title">github的基础操作</div>
                         <div class="blog-excerpt">本文单纯地写出github如何让小组工作更加便利</div>
-                    </li>
-                </a>
-                <a href="#" class="blog-link" data-url="">
-                    <li class="blog-item">
+                    </a>
+                </li>
+                <li class="blog-item">
+                    <a href="#" class="blog-link" data-url="">
                         <div class="blog-title">Web开发中的最佳实践总结</div>
                         <div class="blog-excerpt">分享我在Web开发过程中积累的一些实用技巧和最佳实践...</div>
-                    </li>
-                </a>
-                <a href="#" class="blog-link" data-url="">
-                    <li class="blog-item">
+                    </a>
+                </li>
+                <li class="blog-item">
+                    <a href="#" class="blog-link" data-url="">
                         <div class="blog-title">Python数据分析入门指南</div>
                         <div class="blog-excerpt">为初学者准备的Python数据分析入门教程...</div>
-                    </li>
-                </a>
-                <a href="#" class="blog-link" data-url="https://space.bilibili.com/3546700088084539">
-                    <li class="blog-item">
+                    </a>
+                </li>
+                <li class="blog-item">
+                    <a href="https://space.bilibili.com/3546700088084539" class="blog-link" target="_blank" rel="noopener noreferrer">
                         <div class="blog-title">我的个人哔哩哔哩账号</div>
                         <div class="blog-excerpt">欢迎关注👏</div>
-                    </li>
-                </a>
+                    </a>
+                </li>
             </ul>
         </section>
 
@@ -74,23 +76,23 @@
                 <ul class="notes-list">
                     <li class="note-item" data-url="https://raw.githubusercontent.com/kyandi-i/improvement/refs/heads/main/Docker.md">
                         <div class="note-title">DOCKER学习笔记</div>
-                        <div class="note-excerpt">点击查看：记录了DOCKER的学习过程...</div>
+                        <div class="note-excerpt">记录了DOCKER的学习过程...</div>
                     </li>
-                    <li class="note-item" data-url="https://raw.githubusercontent.com/kyandi-i/improvement/refs/heads/main/git%E4%B8%8EGitHub.md">
+                    <li class="note-item" data-url="https://raw.githubusercontent.com/kyandi-i/improvement/refs/heads/main/git与GitHub.md">
                         <div class="note-title">git常用命令的总结</div>
-                        <div class="note-excerpt">点击查看：对常用git的命令梳理...</div>
+                        <div class="note-excerpt">对常用git的命令梳理...</div>
                     </li>
-                    <li class="note-item" data-url="https://raw.githubusercontent.com/kyandi-i/improvement/refs/heads/main/python%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.md">
+                    <li class="note-item" data-url="https://raw.githubusercontent.com/kyandi-i/improvement/refs/heads/main/python项目管理.md">
                         <div class="note-title">python项目管理</div>
-                        <div class="note-excerpt">点击查看：基本python项目管理相关内容...</div>
+                        <div class="note-excerpt">基本python项目管理相关内容...</div>
                     </li>
-                    <li class="note-item" data-url="https://raw.githubusercontent.com/kyandi-i/improvement/refs/heads/main/uv%E7%AE%A1%E7%90%86python.md">
+                    <li class="note-item" data-url="https://raw.githubusercontent.com/kyandi-i/improvement/refs/heads/main/uv管理python.md">
                         <div class="note-title">uv管理python</div>
-                        <div class="note-excerpt">点击查看：通过uv进行对python项目管理相关内容...</div>
+                        <div class="note-excerpt">通过uv进行对python项目管理相关内容...</div>
                     </li>
-                    <li class="note-item" data-url="https://raw.githubusercontent.com/kyandi-i/improvement/refs/heads/main/%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91.md">
+                    <li class="note-item" data-url="https://raw.githubusercontent.com/kyandi-i/improvement/refs/heads/main/一、基本文本编辑.md">
                         <div class="note-title">markdown语法</div>
-                        <div class="note-excerpt">点击查看：一些基础markdown语法介绍...</div>
+                        <div class="note-excerpt">一些基础markdown语法介绍...</div>
                     </li>
                 </ul>
             </div>
@@ -100,55 +102,19 @@
                 <div id="markdownContent" class="markdown-body"></div>
             </div>
         </section>
+    </div>
 
-        <section id="agents" class="page">
-            <h1>我的智能体项目</h1>
-            <div class="agent-grid">
-                <div class="agent-card">
-                    <h2>Qwen智能助手</h2>
-                    <p><strong>项目简介：</strong>先进的多模态人工智能助手。</p>
-                    <p><strong>核心功能：</strong></p>
-                    <ul>
-                        <li>自然语言理解和生成</li>
-                        <li>代码编写和调试辅助</li>
-                        <li>文档阅读和摘要生成</li>
-                    </ul>
-                </div>
-                <div class="agent-card">
-                    <h2>代码审查助手</h2>
-                    <p><strong>项目简介：</strong>专注代码质量检查的工具。</p>
-                    <p><strong>核心功能：</strong></p>
-                    <ul>
-                        <li>代码规范性检查</li>
-                        <li>潜在bug检测</li>
-                        <li>性能优化建议</li>
-                    </ul>
-                </div>
-                <div class="agent-card">
-                    <h2>学习规划师</h2>
-                    <p><strong>项目简介：</strong>个性化学习路径推荐系统。</p>
-                    <p><strong>核心功能：</strong></p>
-                    <ul>
-                        <li>学习目标设定</li>
-                        <li>个性化课程推荐</li>
-                        <li>进度跟踪和评估</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-            <footer class="footer">
+    <footer class="footer">
         <div class="footer-content">
             <p class="copyright">&copy; 2026 kyandi的个人博客. 版权所有.</p>
             <div class="contact-info">
                 <span class="contact-item">邮箱: <a href="mailto:2301071799@qq.com">2301071799@qq.com</a></span>
                 <span class="divider">|</span>
-                <span class="contact-item">GitHub: <a href="https://github.com/kyandi-i" target="_blank">kyandi-i</a></span>
+                <span class="contact-item">GitHub: <a href="https://github.com/kyandi-i" target="_blank" rel="noopener noreferrer">kyandi-i</a></span>
                 <div class="contact-sub">QQ: 2301071799</div>
             </div>
         </div>
     </footer>
-    </div>
 
     <script src="01.js"></script>
 </body>
