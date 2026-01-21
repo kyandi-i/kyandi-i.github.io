@@ -215,3 +215,70 @@ h1::after {
     .top-bar { left: 70px; }
     .main-content { margin-left: 70px; padding: 1.5rem; }
 }
+/* 页脚整体容器 */
+.footer {
+    width: 100%;
+    padding: 3rem 0;
+    margin-top: 4rem;
+    background: rgba(255, 255, 255, 0.5); /* 半透明白，透出背景图 */
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(211, 47, 47, 0.1); /* 极淡的红色顶边 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center;    /* 垂直居中 */
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 800px;
+}
+
+/* 版权文字 */
+.copyright {
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+/* 联系信息区域 */
+.contact-info {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* 链接样式 */
+.contact-info a {
+    color: var(--accent-red);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.contact-info a:hover {
+    border-bottom: 1px solid var(--accent-red);
+    opacity: 0.8;
+}
+
+/* 分隔符和副信息 */
+.divider {
+    margin: 0 10px;
+    color: #ddd;
+}
+
+.contact-sub {
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+/* 响应式调整 */
+@media (max-width: 600px) {
+    .contact-item {
+        display: block; /* 手机端垂直排列 */
+        margin: 5px 0;
+    }
+    .divider {
+        display: none;
+    }
+}
