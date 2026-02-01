@@ -27,6 +27,31 @@ document.querySelectorAll('.nav-item').forEach(item => {
     });
 });
 
+// ============= 鼠标点击特效 (二次元装饰) =============
+document.addEventListener('click', function(e) {
+    const heart = document.createElement('div');
+    heart.innerHTML = '💗';
+    heart.style.position = 'fixed';
+    heart.style.left = (e.clientX - 10) + 'px';
+    heart.style.top = (e.clientY - 10) + 'px';
+    heart.style.fontSize = '20px';
+    heart.style.pointerEvents = 'none';
+    heart.style.zIndex = '9999';
+    heart.style.transition = 'all 0.8s ease-out';
+    
+    document.body.appendChild(heart);
+    
+    // 动画效果：向上飘散并消失
+    setTimeout(() => {
+        heart.style.transform = `translateY(-50px) scale(1.5) rotate(${Math.random() * 360}deg)`;
+        heart.style.opacity = '0';
+    }, 10);
+    
+    setTimeout(() => {
+        heart.remove();
+    }, 800);
+});
+
 // ============= 笔记模块 (Markdown 加载) =============
 const noteListContainer = document.getElementById('noteListContainer');
 const noteViewer = document.getElementById('noteViewer');

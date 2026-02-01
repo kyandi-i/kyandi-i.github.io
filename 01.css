@@ -55,6 +55,7 @@ button:hover,
     --shadow-sm: 0 4px 6px rgba(0,0,0,0.02);
     --shadow-md: 0 10px 20px rgba(211, 47, 47, 0.08);
     --transition: all 0.3s ease;
+    --accent-pink: #ff85a2;
     
     /* 布局 */
     --sidebar-width: 200px;
@@ -119,7 +120,7 @@ body::before {
     width: var(--sidebar-width);
     height: 100vh;
     background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     border-right: 1px solid var(--border-color);
     z-index: 1000;
     padding: 0;
@@ -137,7 +138,7 @@ body::before {
     width: 45px;
     height: 45px;
     border-radius: 50%; /* 确保是圆形 */
-    border: 2px solid var(--accent-red);
+    border: 2px solid var(--accent-pink);
     background: var(--pure-white);
     cursor: pointer;
     z-index: 1001;      /* 确保在最上层 */
@@ -147,7 +148,14 @@ body::before {
     align-items: center;
     justify-content: center;
     transition: var(--transition);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* 轻量阴影，突出按钮 */
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);  */
+    box-shadow: var(--neon-shadow);
+    animation: pulse-pink 2s infinite;
+}
+@keyframes pulse-pink {
+    0% { box-shadow: 0 0 0 0 rgba(255, 133, 162, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 133, 162, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 133, 162, 0); }
 }
 
 /* Collapsed State Logic */
@@ -219,10 +227,13 @@ body.sidebar-collapsed .sidebar-toggle {
 }
 
 .sidebar .nav-item:hover {
-    background: rgba(211, 47, 47, 0.05); /* 比active更浅的背景，过渡自然 */
+    /* background: rgba(211, 47, 47, 0.05); 
     color: var(--accent-red);
     box-shadow: 0 2px 4px rgba(211, 47, 47, 0.05);
-    transform: translateY(-1px); /* 与active一致的轻微上移，交互统一 */
+    transform: translateY(-1px);  */
+    background: linear-gradient(90deg, transparent, rgba(255, 133, 162, 0.1));
+    transform: translateX(5px) scale(1.05);
+    color: var(--accent-red);
 }
 
 .sidebar .nav-item.active {
