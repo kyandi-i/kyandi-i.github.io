@@ -7,6 +7,7 @@
 :root {
     /* 确保定义自定义光标路径变量（可选但推荐） */
     --custom-cursor: url('./images/cursor.cur'), default;
+    --sidebar-collapsed-width: 0px;
 }
 
 /* 全局应用自定义光标 */
@@ -125,6 +126,67 @@ body::before {
 }
 
 /* 新增侧边栏logo样式 */
+.sidebar-toggle {
+    position: absolute; /* 关键：必须绝对定位才能跳出侧边栏边框 */
+    right: -22px;       /* 关键：让按钮的一半圆圈露在侧边栏外面 */
+    top: 50%;           /* 垂直居中 */
+    transform: translateY(-50%);
+    
+    width: 45px;
+    height: 45px;
+    border-radius: 50%; /* 确保是圆形 */
+    border: 2px solid var(--accent-red);
+    background: var(--pure-white);
+    cursor: pointer;
+    z-index: 1001;      /* 确保在最上层 */
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+/* Collapsed State Logic */
+body.sidebar-collapsed .sidebar {
+    left: calc(var(--sidebar-width) * -1);
+}
+
+body.sidebar-collapsed .sidebar-toggle {
+    right: -40px; /* Bring it back into view when closed */
+}
+
+body.sidebar-collapsed .toggle-icon {
+    transform: rotate(180deg); /* Flip the arrow */
+}
+
+body.sidebar-collapsed .top-bar,
+body.sidebar-collapsed .main-content,
+body.sidebar-collapsed .footer {
+    margin-left: 0;
+    left: 0;
+}
+
+/* Ensure smooth transitions for layout shifts */
+.sidebar, .top-bar, .main-content, .footer {
+    transition: all 0.3s ease-in-out;
+}
+
+.toggle-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the head isn't squished */
+    transition: var(--transition);
+}
+
+.sidebar-toggle:hover .toggle-avatar {
+    transform: scale(1.15);
+}
+body.sidebar-collapsed .sidebar-toggle {
+    right: -45px; 
+}
+
+
 .sidebar .logo {
     display: block;
     text-align: center;
@@ -451,50 +513,6 @@ h1::after {
     }
 }
 
-@media (max-width: 768px) {
-    :root {
-        --sidebar-width: 70px;
-    }
-    
-    .sidebar .logo {
-        font-size: 1.2rem;
-        padding: 0.8rem 0;
-    }
-    
-    .nav-item span {
-        display: none;
-    }
-    
-    .top-bar {
-        left: var(--sidebar-width);
-        padding-right: 1rem;
-    }
-    
-    .main-content,
-    .footer-content {
-        margin-left: var(--sidebar-width);
-        padding: var(--spacing-lg) var(--spacing-md);
-    }
-    
-    .sidebar:hover {
-        width: 200px;
-    }
-    
-    .sidebar:hover .nav-item span {
-        display: inline;
-    }
-    
-    .sidebar:hover .logo {
-        font-size: 1.6rem;
-        padding: 1.2rem 0;
-    }
-    
-    .sidebar:hover + .top-bar,
-    .sidebar:hover ~ .main-content,
-    .sidebar:hover ~ .footer {
-        margin-left: 200px;
-    }
-}
 
 @media (max-width: 480px) {
     .contact-item {
