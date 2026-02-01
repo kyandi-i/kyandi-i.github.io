@@ -14,7 +14,11 @@ document.querySelectorAll('.nav-item').forEach(item => {
         // 显示对应页面
         const targetPage = this.getAttribute('data-page');
         document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-        document.getElementById(targetPage).classList.add('active');
+        const activePage = document.getElementById(targetPage);
+        activePage.classList.add('active');
+        
+        // 页面切换时平滑滚动到顶部
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         
         if (targetPage === 'notes') {
             document.getElementById('noteListContainer').style.display = 'block';
@@ -29,53 +33,111 @@ const noteViewer = document.getElementById('noteViewer');
 const markdownContent = document.getElementById('markdownContent');
 const backButton = document.getElementById('backToNotes');
 
+// 生成骨架屏HTML
+const skeletonHTML = `
+    <div class="skeleton skeleton-title"></div>
+    <div class="skeleton skeleton-text"></div>
+    <div class="skeleton skeleton-text"></div>
+`;
+
 document.querySelectorAll('.note-item').forEach(item => {
     item.addEventListener('click', function() {
         const url = this.getAttribute('data-url');
-        if (!url) { alert('这篇笔记还在撰写中哦 ( >﹏< )'); return; }
+        if (!url) { 
+            alert('这篇笔记还在撰写中哦 ( >﹏< )'); 
+            return; 
+        }
 
         noteListContainer.style.display = 'none';
         noteViewer.style.display = 'block';
-        markdownContent.innerHTML = '<p>正在加载内容...</p>';
+        markdownContent.innerHTML = skeletonHTML; // 显示骨架屏
 
         fetch(url)
-            .then(response => { if (!response.ok) throw new Error('加载失败'); return response.text(); })
+            .then(response => { 
+                if (!response.ok) throw new Error('加载失败，请检查网络或链接'); 
+                return response.text(); 
+            })
             .then(text => {
                 const cleanHTML = DOMPurify.sanitize(marked.parse(text));
-                markdownContent.innerHTML = cleanHTML;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // 延迟渲染（模拟加载，增强体验）
+                setTimeout(() => {
+                    markdownContent.innerHTML = cleanHTML;
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 300);
             })
-            .catch(err => { markdownContent.innerHTML = `<p>加载出错: ${err.message}</p>`; });
+            .catch(err => { 
+                markdownContent.innerHTML = `<p style="color: var(--accent-red); text-align: center; padding: 2rem;">加载出错: ${err.message}</p>`; 
+            });
     });
 });
 
 backButton.addEventListener('click', () => {
     noteViewer.style.display = 'none';
     noteListContainer.style.display = 'block';
+    // 返回时平滑滚动到笔记列表顶部
+    noteListContainer.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 // ============= 侧边栏折叠核心逻辑 =============
 const sidebarToggle = document.getElementById('sidebarToggle');
 
-// 点击事件
+// 点击事件（添加防重复点击）
+let isToggling = false;
 sidebarToggle.addEventListener('click', function() {
+    if (isToggling) return;
+    isToggling = true;
+    
     document.body.classList.toggle('sidebar-collapsed');
+    const isCollapsed = document.body.classList.contains('sidebar-collapsed');
     
     // 保存状态到本地
-    const isCollapsed = document.body.classList.contains('sidebar-collapsed');
     localStorage.setItem('sidebarStatus', isCollapsed ? 'closed' : 'open');
+    
+    // 解锁点击
+    setTimeout(() => {
+        isToggling = false;
+    }, 350);
 });
 
 // 页面加载时恢复状态
 window.addEventListener('DOMContentLoaded', () => {
     const savedStatus = localStorage.getItem('sidebarStatus');
-    // 只有当明确记录为 'closed' 时才折叠，默认开启
     if (savedStatus === 'closed') {
         document.body.classList.add('sidebar-collapsed');
     }
+    
+    // 监听滚动，给顶栏添加滚动状态
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            document.body.classList.add('scrolled');
+        } else {
+            document.body.classList.remove('scrolled');
+        }
+    });
 });
 
 // 初始加载淡入效果
 window.addEventListener('load', () => {
-    document.body.style.opacity = '1';
+    // 延迟淡入，增强体验
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 200);
+    
+    // 初始化页面动画
+    document.querySelectorAll('.page').forEach(page => {
+        if (page.classList.contains('active')) {
+            page.style.opacity = 1;
+            page.style.transform = 'translateY(0)';
+        }
+    });
+});
+
+
+
+// 链接新窗口打开优化
+document.querySelectorAll('a[target="_blank"]').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        window.open(link.href, '_blank', 'noopener,noreferrer');
+    });
 });
