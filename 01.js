@@ -111,13 +111,16 @@ let isToggling = false;
 sidebarToggle.addEventListener('click', function() {
     if (isToggling) return;
     isToggling = true;
-    
+
     document.body.classList.toggle('sidebar-collapsed');
     const isCollapsed = document.body.classList.contains('sidebar-collapsed');
-    
+
+    // 更新 aria-expanded 属性
+    this.setAttribute('aria-expanded', !isCollapsed);
+
     // 保存状态到本地
     localStorage.setItem('sidebarStatus', isCollapsed ? 'closed' : 'open');
-    
+
     // 解锁点击
     setTimeout(() => {
         isToggling = false;

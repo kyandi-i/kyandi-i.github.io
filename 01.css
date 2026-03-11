@@ -5,9 +5,40 @@
    自定义鼠标指针
    ============= */
 :root {
-    /* 确保定义自定义光标路径变量（可选但推荐） */
+    /* 自定义光标 */
     --custom-cursor: url('./images/cursor.cur'), default;
     --sidebar-collapsed-width: 0px;
+
+    /* 色彩系统 */
+    --accent-red: #d32f2f;      /* 核心点缀红 */
+    --soft-red: #ffebee;        /* 极淡红（背景用） */
+    --pure-white: #ffffff;
+    --light-gray: #f5f5f5;
+    --text-dark: #333333;       /* 深灰文字，比纯黑更高级 */
+    --text-muted: #757575;      /* 辅助文字 */
+    --border-color: #eee;       /* 边框颜色 */
+    --shadow-sm: 0 4px 6px rgba(0,0,0,0.02);
+    --shadow-md: 0 10px 20px rgba(211, 47, 47, 0.08);
+    --neon-shadow: 0 0 15px rgba(255, 133, 162, 0.5);
+    --transition: all 0.3s ease;
+    --accent-pink: #ff85a2;
+
+    /* 布局 */
+    --sidebar-width: 200px;
+    --topbar-height: 60px;
+    --container-max-width: 850px;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+
+    /* 字体 */
+    --font-main: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', sans-serif;
+    --font-size-base: 1rem;
+    --font-size-sm: 0.95rem;
+    --font-size-lg: 1.2rem;
+    --font-size-h1: 2rem;
 }
 
 /* 全局应用自定义光标 */
@@ -42,37 +73,6 @@ button:hover,
 #backToNotes {
     cursor: url('./images/cursor.cur'), url('./images/back_cursor.cur'), pointer !important;
     /* 可选：为返回按钮使用不同的光标 */
-}
-:root {
-    /* 色彩系统 */
-    --accent-red: #d32f2f;      /* 核心点缀红 */
-    --soft-red: #ffebee;        /* 极淡红（背景用） */
-    --pure-white: #ffffff;
-    --light-gray: #f5f5f5;
-    --text-dark: #333333;       /* 深灰文字，比纯黑更高级 */
-    --text-muted: #757575;      /* 辅助文字 */
-    --border-color: #eee;       /* 边框颜色 */
-    --shadow-sm: 0 4px 6px rgba(0,0,0,0.02);
-    --shadow-md: 0 10px 20px rgba(211, 47, 47, 0.08);
-    --transition: all 0.3s ease;
-    --accent-pink: #ff85a2;
-    
-    /* 布局 */
-    --sidebar-width: 200px;
-    --topbar-height: 60px;
-    --container-max-width: 850px;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
-    --spacing-xxl: 3rem;
-    
-    /* 字体 */
-    --font-main: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', sans-serif;
-    --font-size-base: 1rem;
-    --font-size-sm: 0.95rem;
-    --font-size-lg: 1.2rem;
-    --font-size-h1: 2rem;
 }
 
 /* =============
@@ -530,6 +530,37 @@ h1::after {
     margin-top: 0.5rem;
     opacity: 0.8;
     font-size: 0.9rem;
+}
+
+/* =============
+   骨架屏样式
+   ============= */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 4px;
+}
+
+.skeleton-title {
+    height: 32px;
+    margin-bottom: 16px;
+    width: 60%;
+}
+
+.skeleton-text {
+    height: 16px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.skeleton-text:last-of-type {
+    width: 80%;
+}
+
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }
 
 /* =============
